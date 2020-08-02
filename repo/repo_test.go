@@ -12,19 +12,19 @@ var _ = Describe("Repo", func() {
 	var repository *GameRepository
 
 	BeforeEach(func() {
-		repository = &GameRepository{}
+		repository = New()
 	})
 
 	It("should save a board entity", func() {
+		id := uuid.New()
 		entity := BoardEntity{
-			Board: game.Board{},
-			Id:    uuid.New(),
+			Board: &game.Board{},
+			Id:    id,
 		}
 
-		result, err := repository.Save(entity)
+		err := repository.Save(entity)
 
 		Expect(err).To(BeNil())
-		Expect(result).To(Equal(entity))
-		Expect(repository.Boards).To(ContainElement(entity))
+		Expect(repository.Boards[id]).To(Equal(entity.Board))
 	})
 })

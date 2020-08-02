@@ -25,7 +25,6 @@ func (b Board) Step() Board {
 			{c.X, c.Y - 1},
 			{c.X + 1, c.Y - 1},
 			{c.X - 1, c.Y},
-			//{c.X, c.Y},
 			{c.X + 1, c.Y},
 			{c.X - 1, c.Y + 1},
 			{c.X, c.Y + 1},
