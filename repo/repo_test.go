@@ -27,4 +27,20 @@ var _ = Describe("Repo", func() {
 		Expect(err).To(BeNil())
 		Expect(repository.Boards[id]).To(Equal(entity.Board))
 	})
+
+	It("should retrieve a board entity by id", func() {
+		id := uuid.New()
+		board := &game.Board{}
+		repository = &GameRepository{
+			Boards: map[uuid.UUID]*game.Board{
+				id: board,
+			},
+		}
+
+		result, err := repository.FindById(id)
+
+		Expect(err).To(BeNil())
+		Expect(result).ToNot(BeNil())
+		Expect(result).To(Equal(board))
+	})
 })
